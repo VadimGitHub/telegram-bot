@@ -1,16 +1,19 @@
 {
-  "db": {
-    "class": "yii\\db\\Connection",
-    "schemaCache": "cache",
-    "charset": "utf8",
-    "login": "postgres",
-    "password": "postgres",
-    "host": "localhost",
-    "dbname": "testovoe",
-    "test-dbname": "testovoe_test"
-  },
-  "capcha": {
-    "reCapchaSecret": "secret-key",
-    "reCapchaSiteKey": "site-key"
-  }
+    "db": {
+        "class": "yii\\db\\Connection",
+        "schemaCache": "cache",
+        "charset": "utf8",
+        "login": "postgres",
+        "password": "postgres",
+        "host": "localhost",
+        "dbname": "telegram",
+        "test-dbname": "testovoe_test"
+    },
+    "capcha": {
+        "reCapchaSecret": "secret-key",
+        "reCapchaSiteKey": "site-key"
+    },
+    "telegram": {
+        "token": "639575950:AAE6NGAzkzmCnXSuWySASfQ3HUUiP7fH7yo"
+    }
 }

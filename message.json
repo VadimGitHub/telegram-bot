@@ -1,0 +1,79 @@
+[{
+    "ok": true,
+    "result": [
+        {
+            "update_id": 154390746,
+            "channel_post": {
+                "message_id": 5,
+                "chat": {
+                    "id": -1001382905743,
+                    "title": "ParsingTakeVkBot",
+                    "username": "parsingtakevkbot",
+                    "type": "channel"
+                },
+                "date": 1536935712,
+                "text": "/start 123",
+                "entities": [
+                    {
+                        "offset": 0,
+                        "length": 6,
+                        "type": "bot_command"
+                    }
+                ]
+            }
+        },
+        {
+            "update_id": 154390747,
+            "message": {
+                "message_id": 5,
+                "from": {
+                    "id": 158295966,
+                    "is_bot": false,
+                    "first_name": "Vadim",
+                    "last_name": "Chek",
+                    "username": "VVadyan",
+                    "language_code": "ru"
+                },
+                "chat": {
+                    "id": 158295966,
+                    "first_name": "Vadim",
+                    "last_name": "Chek",
+                    "username": "VVadyan",
+                    "type": "private"
+                },
+                "date": 1536935738,
+                "text": "123"
+            }
+        },
+        {
+            "update_id": 154390748,
+            "message": {
+                "message_id": 8,
+                "from": {
+                    "id": 158295966,
+                    "is_bot": false,
+                    "first_name": "Vadim",
+                    "last_name": "Chek",
+                    "username": "VVadyan",
+                    "language_code": "ru"
+                },
+                "chat": {
+                    "id": 158295966,
+                    "first_name": "Vadim",
+                    "last_name": "Chek",
+                    "username": "VVadyan",
+                    "type": "private"
+                },
+                "date": 1536939635,
+                "text": "/start 444",
+                "entities": [
+                    {
+                        "offset": 0,
+                        "length": 6,
+                        "type": "bot_command"
+                    }
+                ]
+            }
+        }
+    ]
+}]

@@ -18,6 +18,9 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'telegram' => [
+            'class' => 'common\components\telegram\TelegramComponent',
+        ],
     ],
 ];
 
