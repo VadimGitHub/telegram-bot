@@ -1,0 +1,70 @@
+server {
+    charset utf-8;
+    client_max_body_size 128M;
+    listen 80; ## listen for ipv4
+
+    server_name base-app;
+    root        /var/www/base-app;
+    index       index.php;
+
+    access_log  /var/www/log/base-app/access.log;
+    error_log   /var/www/log/base-app/error.log;
+
+    error_page 403 /404;
+
+    location / {
+        root /var/www/base-app/frontend/web;
+        try_files $uri /frontend/web/index.php?$args;
+        # avoiding processing of calls to non-existing static files by Yii
+        location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar|woff|woff2|svg)$ {
+            access_log  on;
+            expires  360d;
+
+            try_files  $uri =404;
+        }
+    }
+
+    location /admin {
+        alias  /var/www/base-app/backend/web;
+
+        rewrite  ^(/admin)/$ $1 permanent;
+        try_files  $uri /backend/web/index.php?$args;
+    }
+
+    location ~ ^/admin/(.+\.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar|woff|woff2|svg))$ {
+        access_log  on;
+        expires  360d;
+
+        rewrite  ^/admin/(.+)$ /backend/web/$1 break;
+        rewrite  ^/admin/(.+)/(.+)$ /backend/web/$1/$2 break;
+        try_files  $uri =404;
+    }
+
+    location /api {
+        root  /var/www/base-app/api/web;
+        rewrite  ^(/api)/$ $1 permanent;
+        try_files  $uri /api/web/index.php?$args;
+    }
+
+    location /api/swagger {
+        alias  /var/www/base-app/api/swagger/dist;
+        index index.html;
+    }
+
+    location ~ ^/api/doc/(.+\.(json|yaml))$ {
+        rewrite  ^/api/doc/(.+)/(.+)$ /api/modules/$1/doc/$2 break;
+    }
+
+    location /upload/{
+        root /var/www/base-app;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+    }
+
+    location ~ /\.(ht|svn|git) {
+        deny all;
+    }
+}
