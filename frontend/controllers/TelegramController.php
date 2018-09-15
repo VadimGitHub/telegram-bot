@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\telegram\TelegramComponent;
 use yii\web\Controller;
 
 /**
@@ -21,9 +22,15 @@ class TelegramController extends Controller
 
         $updateContent = json_decode($update, true);
 
-        $result = $updateContent['result'][1];
+        /** @var TelegramComponent $telegram */
+        $telegram = \Yii::$app->telegram;
 
+        $telegram->logMessage($updateContent);
+
+        $result = $updateContent['result'][1];
         $chat = $updateContent['result'][1]['message']['chat']['id'];
+
+        $chat = '-1001382905743';
 
         $message = file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?chat_id='.$chat.'&text=Hello%20World');
 

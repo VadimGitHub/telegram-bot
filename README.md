@@ -7,6 +7,6 @@
 Миграции
 
 ```
-php yii migrte
 php yii migrate --migrationPath=@yii/rbac/migrations
+php yii migrate
 ```

@@ -14,11 +14,19 @@
                     ['label' => 'Home', 'icon' => 'home', 'url' => ['/']],
                     ['label' => 'Пользователи', 'icon' => 'fas fa-users', 'url' => ['/user']],
                     [
+                        'label' => 'Telegram',
+                        'icon' => 'fab fa-telegram',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Каналы', 'icon' => 'far fa-star', 'url' => ['/telegram'],],
+                        ],
+                    ],
+                    [
                         'label' => 'RBAC',
                         'icon' => 'share',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Роли', 'icon' => 'fas fa-user', 'url' => ['/role'],],
+                            ['label' => 'Роли', 'icon' => 'far fa-user-circle', 'url' => ['/role'],],
                         ],
                     ],
                 ],

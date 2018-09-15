@@ -12,7 +12,7 @@ class m180801_154450_batch_insert_default_user extends Migration
         [
             'admin',
             'AIVCSJKKGgy1i3Y8BmSRCN_Cnb7a3D1S',
-            '$2y$13$386snSaCvg8DxqpGWXtVNuESHvXNMYWoJKs0Gd1AP/uGWQEc1Q4vO',
+            '$2y$13$386snSaCvg8DxqpGWXtVNuESHvXNMYWoJKs0Gd1AP/uGWQEc1Q4vO', // passw0rd
             'admin@base.ru',
             10,
         ]

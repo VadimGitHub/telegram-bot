@@ -16,6 +16,7 @@ class m180914_153415_create_tbl_telegram_message extends Migration
             'id' => $this->primaryKey(),
             'update_id' => $this->integer(),
             'chat_id' => $this->integer(),
+            'message_id' => $this->integer(),
             'user_id' => $this->integer(),
             'date' => $this->integer(),
             'text' => $this->text(),
@@ -28,6 +29,6 @@ class m180914_153415_create_tbl_telegram_message extends Migration
      */
     public function safeDown()
     {
-
+        $this->dropTable('telegram_message');
     }
 }
