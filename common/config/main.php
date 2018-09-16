@@ -21,6 +21,9 @@ $config = [
         'telegram' => [
             'class' => 'common\components\telegram\TelegramComponent',
         ],
+        'vk' => [
+            'class' => 'common\components\vk\VkComponent',
+        ]
     ],
 ];
 

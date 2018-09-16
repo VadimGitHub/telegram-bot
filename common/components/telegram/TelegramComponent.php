@@ -42,13 +42,4 @@ class TelegramComponent extends Component
 
         return false;
     }
-
-    /**
-     * Обрабатываем сообщения которые поступили
-     * @param $updateContent
-     */
-    public function logMessage($updateContent)
-    {
-
-    }
 }
