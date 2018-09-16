@@ -49,13 +49,6 @@ class TelegramComponent extends Component
      */
     public function logMessage($updateContent)
     {
-////        проверяем сообщения на новые. Если новые то обрабатываем, если старые то ничего не делаем
-//        if ($updateContent['ok']) {
-//            foreach ($updateContent['result'] as $message) {
-//                if ($message == self::TYPE_MESSAGE) {
-////                    $newMessage =
-//                }
-//            }
-//        }
+
     }
 }

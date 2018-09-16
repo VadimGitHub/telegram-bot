@@ -22,6 +22,14 @@
                         ],
                     ],
                     [
+                        'label' => 'Вконтакте',
+                        'icon' => 'fab fa-vk',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Паблики', 'icon' => 'fas fa-bars', 'url' => ['/vk'],],
+                        ],
+                    ],
+                    [
                         'label' => 'RBAC',
                         'icon' => 'share',
                         'url' => '#',
