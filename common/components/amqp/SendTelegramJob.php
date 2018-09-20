@@ -2,9 +2,9 @@
 
 namespace common\components\amqp;
 
-use common\components\telegram\TelegramComponent;
 use common\forms\TelegramMessageForm;
 use common\models\telegram\TelegramChanel;
+use common\components\telegram\TelegramComponent;
 use yii\base\BaseObject;
 use yii\queue\JobInterface;
 
