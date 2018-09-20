@@ -22,5 +22,14 @@
         "service_key": "9c09ce229c09ce229c09ce22e19c6fea9f99c099c09ce22c7943933b17ecdccd98fde79",
         "secure_key": "0ZOSXgWywSSXGqcsKJhg",
         "version": 5.85
+    },
+    "MQ": {
+        "telegram": "telegram",
+        "vk": "vk",
+        "user": "guest",
+        "password": "guest",
+        "host": "localhost",
+        "port": 5672,
+        "vhost": "\/"
     }
 }

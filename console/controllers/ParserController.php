@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use common\components\amqp\SendTelegramJob;
 use common\components\vk\VkComponent;
 use yii\console\Controller;
 use yii\httpclient\Client;
@@ -31,5 +32,12 @@ class ParserController extends Controller
         );
 
         $vk->prepareData($data);
+    }
+
+    public function actionQueue()
+    {
+        \Yii::$app->telegramQueue->push(new SendTelegramJob([
+            'chatName' => 'ParsingTakeVkBot'
+        ]));
     }
 }

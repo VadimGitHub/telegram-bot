@@ -50,7 +50,7 @@ class TelegramChanel extends \yii\db\ActiveRecord
      * @return TelegramChanel|null
      * @throws NotFoundHttpException
      */
-    public function getChanelByName($name)
+    public static function getChanelByName($name)
     {
         $chanel = self::findOne(['title' => $name]);
 

@@ -23,7 +23,18 @@ $config = [
         ],
         'vk' => [
             'class' => 'common\components\vk\VkComponent',
-        ]
+        ],
+        'telegramQueue' => [
+            'class' => \yii\queue\amqp_interop\Queue::class,
+            'port' => $_ENV['YII_PRODUCT_SETTINGS']['MQ']['port'],
+            'vhost' => $_ENV['YII_PRODUCT_SETTINGS']['MQ']['vhost'],
+            'user' => $_ENV['YII_PRODUCT_SETTINGS']['MQ']['user'],
+            'password' => $_ENV['YII_PRODUCT_SETTINGS']['MQ']['password'],
+            'queueName' => $_ENV['YII_PRODUCT_SETTINGS']['MQ']['telegram'],
+            'driver' => yii\queue\amqp_interop\Queue::ENQUEUE_AMQP_LIB,
+            'exchangeName' => 'send-telegram',
+            'dsn' => 'amqp://guest:guest@localhost:5672/%2F',
+        ],
     ],
 ];
 

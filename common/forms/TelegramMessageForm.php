@@ -25,6 +25,11 @@ class TelegramMessageForm extends Model
         ];
     }
 
+    public function setMessage($msg)
+    {
+        $this->message = $msg;
+    }
+
     public function attributeLabels()
     {
         return [
