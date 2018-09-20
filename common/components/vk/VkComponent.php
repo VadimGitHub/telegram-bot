@@ -4,10 +4,10 @@ namespace common\components\vk;
 
 use common\components\telegram\TelegramComponent;
 use common\forms\TelegramMessageForm;
-use common\forms\vk\PostVkForm;
 use common\models\telegram\TelegramChanel;
 use common\models\vk\GroupVk;
 use common\models\vk\PostVk;
+use common\services\vk\VkService;
 use yii\base\Component;
 use yii\httpclient\Client;
 
@@ -92,32 +92,22 @@ class VkComponent extends Component
         /** @var TelegramComponent $telegram */
         $telegram = \Yii::$app->telegram;
 
-        $telegramChanel = TelegramChanel::findOne(['title' => 'ParsingTakeVkBot']);
-
+        /** @var array $data */
         $data = json_decode($data->getContent(), true);
 
-//        Если грыппы нет, ниче не делаем
+        $service = new VkService();
+        $telegramChanel = TelegramChanel::findOne(['title' => 'ParsingTakeVkBot']);
         $group = GroupVk::findOne(['owner_id' => -$data['response']['groups'][0]['id']]);
 
-        foreach ($data['response']['items'] as $item) {
-            if (PostVk::findOne(['post_id' => $item['id']])) {
+        foreach ($data['response']['items'] as $message) {
+            if (PostVk::findOne(['post_id' => $message['id']]) || !$group) {
                 continue;
             }
 
-            /** @var PostVkForm $postVk */
-            $postVk = new PostVkForm();
-            $postVk->setAttributes($item);
-            $postVk->post_id = $item['id'];
-            $postVk->group_id = $group->id;
-
-            $postVk->validate();
-
-            $modelPost = new PostVk();
-            $modelPost->setAttributes($postVk->getAttributes());
-            $modelPost->save();
+            $service->create($message, $group);
 
             $telegramForm = new TelegramMessageForm();
-            $telegramForm->message = $item['text'];
+            $telegramForm->message = $message['text'];
 
             if ($telegramForm->validate()) {
                 $telegram->sendMessage($telegramChanel, $telegramForm);
