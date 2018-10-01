@@ -67,9 +67,10 @@ $columns = [
 <?= DynaGrid::widget([
     'columns' => $columns,
     'storage' => DynaGrid::TYPE_COOKIE,
-    'theme' => 'panel-success',
+    'theme' => 'panel-default',
     'gridOptions' => [
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'panel' => [
             'before' => Html::a('Добавить группу VK', ['create'], ['class' => 'btn btn-success'])
         ],

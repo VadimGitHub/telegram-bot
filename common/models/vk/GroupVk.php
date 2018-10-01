@@ -16,6 +16,11 @@ namespace common\models\vk;
  */
 class GroupVk extends \yii\db\ActiveRecord
 {
+    const
+        TYPE_GROUP = 5, // группа
+        TYPE_PUBLIC_PAGE = 10, // публичная страница
+        TYPE_EVENT = 15; // мероприятие
+
     /**
      * {@inheritdoc}
      */
