@@ -2,16 +2,31 @@
 
 namespace common\services\vk;
 
-use common\forms\vk\PostVkForm;
-use common\models\vk\GroupVk;
 use common\models\vk\PostVk;
+use common\models\vk\GroupVk;
+use common\forms\vk\PostVkForm;
+use yii\base\BaseObject;
 
 /**
  * Class VkService
  * @package common\services
  */
-class VkService
+class VkService extends BaseObject
 {
+    /** @var PostVk $post */
+    public $post;
+
+    /**
+     * VkService constructor.
+     * @param PostVk $post
+     * @param array $config
+     */
+    public function __construct(PostVk $post, array $config = [])
+    {
+        $this->post = $post;
+        parent::__construct($config);
+    }
+
     /**
      * @param array $message
      * @param GroupVk|null $group
@@ -19,7 +34,8 @@ class VkService
      */
     public function create(array $message, GroupVk $group = null)
     {
-        $model = new PostVk();
+        /** @var PostVk $model */
+        $model = $this->post;
         $form = new PostVkForm();
 
         $form->setAttributes($message);

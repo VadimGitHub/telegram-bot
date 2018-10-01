@@ -12,16 +12,22 @@ class PostVkForm extends Model
 {
     /** @var integer $group_id */
     public $group_id;
+
     /** @var integer $post_id */
     public $post_id;
+
     /** @var integer $from_id */
     public $from_id;
+
     /** @var integer $owner_id */
     public $owner_id;
+
     /** @var integer $date */
     public $date;
+
     /** @var boolean $marked_as_ads */
     public $marked_as_ads;
+
     /** @var string $text */
     public $text;
 

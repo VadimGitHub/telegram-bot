@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
  * @var $this yii\web\View
  * @var $model common\models\vk\GroupVk
  * @var $form yii\widgets\ActiveForm
+ * @var $modelForm common\forms\vk\GroupVkForm
  * @var $edit boolean
  */
 ?>
@@ -17,13 +18,13 @@ use yii\widgets\ActiveForm;
     <div class="box-body">
         <div class="row">
             <div class="col-sm-6">
-                <?= $form->field($model, 'title')->textInput([
+                <?= $form->field($modelForm, 'title')->textInput([
                     'maxlength' => true,
                     'disabled' => !$edit,
                 ]) ?>
             </div>
             <div class="col-sm-6">
-                <?= $form->field($model, 'screen_name')->textInput([
+                <?= $form->field($modelForm, 'screen_name')->textInput([
                     'maxlength' => true,
                     'disabled' => !$edit,
                 ]) ?>
@@ -31,13 +32,13 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <?= $form->field($model, 'owner_id')->textInput([
+                <?= $form->field($modelForm, 'owner_id')->textInput([
                     'maxlength' => true,
                     'disabled' => !$edit,
                 ]) ?>
             </div>
             <div class="col-sm-6">
-                <?= $form->field($model, 'type')->textInput([
+                <?= $form->field($modelForm, 'type')->textInput([
                     'maxlength' => true,
                     'disabled' => !$edit
                 ]) ?>
@@ -45,7 +46,7 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <?= $form->field($model, 'is_closed')->checkbox([
+                <?= $form->field($modelForm, 'is_closed')->checkbox([
                     'label' => 'Закрытая группа',
                     'disabled' => !$edit
                 ]) ?>

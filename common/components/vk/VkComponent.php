@@ -95,7 +95,7 @@ class VkComponent extends Component
         /** @var array $data */
         $data = json_decode($data->getContent(), true);
 
-        $service = new VkService();
+        $service = new VkService(new PostVk());
         $telegramChanel = TelegramChanel::findOne(['title' => 'ParsingTakeVkBot']);
         $group = GroupVk::findOne(['owner_id' => -$data['response']['groups'][0]['id']]);
 

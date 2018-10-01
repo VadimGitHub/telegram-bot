@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\forms\vk\GroupVkForm;
 use Yii;
 use common\models\vk\GroupVk;
 use common\models\vk\GroupVkSearch;
@@ -65,13 +66,18 @@ class VkController extends Controller
     public function actionCreate()
     {
         $model = new GroupVk();
+        $modelForm = new GroupVkForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($modelForm->load(Yii::$app->request->post())) {
+            echo 'Успех';
+            die;
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'modelForm' => $modelForm,
         ]);
     }
 
