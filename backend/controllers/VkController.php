@@ -2,34 +2,19 @@
 
 namespace backend\controllers;
 
-use common\forms\vk\GroupVkForm;
-use Yii;
 use common\models\vk\GroupVk;
+use common\forms\vk\GroupVkForm;
+use common\services\vk\VkGroupService;
 use common\models\vk\GroupVkSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * VkController implements the CRUD actions for GroupVk model.
  */
 class VkController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all GroupVk models.
      * @return mixed
@@ -53,24 +38,29 @@ class VkController extends Controller
      */
     public function actionView($id)
     {
+        /** @var GroupVk $model */
+        $model = $this->findModel($id);
+        $modelForm = new GroupVkForm();
+        $modelForm->setAttributes($model->getAttributes());
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'modelForm' => $modelForm,
         ]);
     }
 
     /**
-     * Creates a new GroupVk model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionCreate()
     {
         $model = new GroupVk();
         $modelForm = new GroupVkForm();
 
-        if ($modelForm->load(Yii::$app->request->post())) {
-            echo 'Успех';
-            die;
+        if ($modelForm->load(Yii::$app->request->post()) && $modelForm->validate()) {
+            $service = new VkGroupService(new GroupVk());
+            $model = $service->create($modelForm->attributes);
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -82,31 +72,36 @@ class VkController extends Controller
     }
 
     /**
-     * Updates an existing GroupVk model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
+        /** @var GroupVk $model */
         $model = $this->findModel($id);
+        $modelForm = new GroupVkForm();
+        $modelForm->setAttributes($model->getAttributes());
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($modelForm->load(Yii::$app->request->post()) && $modelForm->validate()) {
+            $service = new VkGroupService($model);
+            $service->update($modelForm->attributes);
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'modelForm' => $modelForm,
         ]);
     }
 
     /**
-     * Deletes an existing GroupVk model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {

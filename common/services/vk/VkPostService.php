@@ -11,7 +11,7 @@ use yii\base\BaseObject;
  * Class VkService
  * @package common\services
  */
-class VkService extends BaseObject
+class VkPostService extends BaseObject
 {
     /** @var PostVk $post */
     public $post;
@@ -28,6 +28,7 @@ class VkService extends BaseObject
     }
 
     /**
+     * Create PostVk
      * @param array $message
      * @param GroupVk|null $group
      * @return bool

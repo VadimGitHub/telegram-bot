@@ -7,7 +7,7 @@ use common\forms\TelegramMessageForm;
 use common\models\telegram\TelegramChanel;
 use common\models\vk\GroupVk;
 use common\models\vk\PostVk;
-use common\services\vk\VkService;
+use common\services\vk\VkPostService;
 use yii\base\Component;
 use yii\httpclient\Client;
 
@@ -95,7 +95,7 @@ class VkComponent extends Component
         /** @var array $data */
         $data = json_decode($data->getContent(), true);
 
-        $service = new VkService(new PostVk());
+        $service = new VkPostService(new PostVk());
         $telegramChanel = TelegramChanel::findOne(['title' => 'ParsingTakeVkBot']);
         $group = GroupVk::findOne(['owner_id' => -$data['response']['groups'][0]['id']]);
 

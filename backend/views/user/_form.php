@@ -4,11 +4,12 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\user\User */
-/* @var $form yii\widgets\ActiveForm */
-/* @var $edit boolean */
-
+/**
+ * @var $this yii\web\View
+ * @var $model common\models\user\User
+ * @var $form yii\widgets\ActiveForm
+ * @var $edit boolean
+ */
 ?>
 
 <div class="box box-info">

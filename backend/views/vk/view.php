@@ -2,6 +2,7 @@
 
 /**
  * @var $this yii\web\View
+ * @var $modelForm \common\forms\vk\GroupVkForm
  * @var $model common\models\vk\GroupVk
  */
 
@@ -12,5 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('_form', [
     'model' => $model,
+    'modelForm' => $modelForm,
     'edit' => false,
 ]) ?>
