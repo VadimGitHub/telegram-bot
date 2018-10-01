@@ -12,8 +12,8 @@ class m181001_130711_change_tbl_group_vk extends Migration
      */
     public function safeUp()
     {
-        $this->update('group_vk', ['type' => \common\models\vk\GroupVk::TYPE_GROUP]);
-        $this->alterColumn('group_vk', 'type', $this->integer()->defaultValue(5));
+        $this->dropColumn('group_vk', 'type');
+        $this->addColumn('group_vk', 'type', $this->integer()->defaultValue(5));
     }
 
     /**
@@ -21,6 +21,7 @@ class m181001_130711_change_tbl_group_vk extends Migration
      */
     public function safeDown()
     {
-
+        $this->dropColumn('group_vk', 'type');
+        $this->addColumn('group_vk', 'type', $this->string());
     }
 }

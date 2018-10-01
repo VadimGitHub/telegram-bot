@@ -1,5 +1,7 @@
 <?php
 
+use common\models\vk\GroupVk;
+use kartik\switchinput\SwitchInput;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -38,7 +40,8 @@ use yii\widgets\ActiveForm;
                 ]) ?>
             </div>
             <div class="col-sm-6">
-                <?= $form->field($modelForm, 'type')->textInput([
+                <?= $form->field($modelForm, 'type')->dropDownList(GroupVk::getAllType(), [
+                    'prompt' => 'Выберите тип группы',
                     'maxlength' => true,
                     'disabled' => !$edit
                 ]) ?>
@@ -46,10 +49,16 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <?= $form->field($modelForm, 'is_closed')->checkbox([
-                    'label' => 'Закрытая группа',
+                <?= $form->field($modelForm, 'is_closed')->widget(SwitchInput::class, [
+                    'type' => SwitchInput::CHECKBOX,
+                    'pluginOptions' => [
+                        'onText' => 'Закрытая группа',
+                        'offText' => 'Открытая группа',
+                    ],
                     'disabled' => !$edit
-                ]) ?>
+                ]); ?>
+
+
             </div>
         </div>
     </div>

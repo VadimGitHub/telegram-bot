@@ -2,10 +2,8 @@
 
 namespace common\models\vk;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\vk\GroupVk;
 
 /**
  * GroupVkSearch represents the model behind the search form of `common\models\vk\GroupVk`.
@@ -29,7 +27,6 @@ class GroupVkSearch extends GroupVk
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
@@ -44,8 +41,6 @@ class GroupVkSearch extends GroupVk
     {
         $query = GroupVk::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -53,21 +48,20 @@ class GroupVkSearch extends GroupVk
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'is_closed' => $this->is_closed,
+            'type' => $this->type,
         ]);
 
-        $query->andFilterWhere(['ilike', 'title', $this->title])
+        $query
+            ->andFilterWhere(['ilike', 'title', $this->title])
             ->andFilterWhere(['ilike', 'screen_name', $this->screen_name])
-            ->andFilterWhere(['ilike', 'owner_id', $this->owner_id])
-            ->andFilterWhere(['ilike', 'type', $this->type]);
+            ->andFilterWhere(['ilike', 'owner_id', $this->owner_id]);
 
         return $dataProvider;
     }

@@ -33,6 +33,7 @@ class GroupVkForm extends Model
         return [
             [['title', 'screen_name', 'type'], 'filter', 'filter' => 'trim'],
             [['title', 'screen_name', 'type'], 'filter', 'filter' => 'strip_tags'],
+            [['title', 'screen_name', 'type', 'owner_id'], 'required'],
             [['title', 'screen_name', 'type'], 'string'],
             [['owner_id'], 'integer'],
             ['is_closed', 'boolean'],
@@ -47,7 +48,7 @@ class GroupVkForm extends Model
         return [
             'title' => 'Название',
             'screen_name' => 'Псевдоним в URL',
-            'owner_id' => 'ID группы DR',
+            'owner_id' => 'ID группы VK',
             'is_closed' => 'Закрытая/открытая',
             'type' => 'Тип группы',
         ];

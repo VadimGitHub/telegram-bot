@@ -36,7 +36,8 @@ class GroupVk extends \yii\db\ActiveRecord
     {
         return [
             [['is_closed'], 'boolean'],
-            [['title', 'screen_name', 'owner_id', 'type'], 'string', 'max' => 255],
+            [['title', 'screen_name', 'owner_id'], 'string', 'max' => 255],
+            [['type'], 'integer'],
         ];
     }
 
@@ -61,5 +62,17 @@ class GroupVk extends \yii\db\ActiveRecord
     public function getPostVks()
     {
         return $this->hasMany(PostVk::class, ['group_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllType(): array
+    {
+        return [
+            self::TYPE_GROUP => 'Группа',
+            self::TYPE_PUBLIC_PAGE => 'Публичная страница',
+            self::TYPE_EVENT => 'Мероприятие',
+        ];
     }
 }

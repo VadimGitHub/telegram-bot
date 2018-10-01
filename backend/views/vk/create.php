@@ -6,7 +6,7 @@
  * @var $modelForm common\forms\vk\GroupVkForm
  */
 
-$this->title = 'Добавить группу Vk';
+$this->title = 'Добавить группу VK';
 $this->params['breadcrumbs'][] = ['label' => 'Группы Vk', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

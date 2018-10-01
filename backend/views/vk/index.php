@@ -1,6 +1,8 @@
 <?php
 
+use common\models\vk\GroupVk;
 use kartik\dynagrid\DynaGrid;
+use kartik\grid\GridView;
 use yii\helpers\Html;
 
 /**
@@ -29,15 +31,45 @@ $columns = [
     ],
     [
         'attribute' => 'is_closed',
-        'header' => 'Тип группы',
+        'format' => 'raw',
         'vAlign' => 'middle',
-        'value' => function ($model) {
-            return $model->is_closed ? 'Закрытая' : 'Открытая';
+        'filter' => [
+            0 => 'Открытая',
+            1 => 'Закрытая',
+        ],
+        'filterType' => GridView::FILTER_SELECT2,
+        'filterWidgetOptions' => [
+            'pluginOptions' => [
+                'allowClear' => true,
+                'width' => '150px'
+            ],
+        ],
+        'filterInputOptions' => [
+            'placeholder' => '---'
+        ],
+        'value' => function (GroupVk $model) {
+            return $model->is_closed
+                ? '<span class="text-danger">Закрытая</span>'
+                : '<span class="text-success">Открытая</span>';
         }
     ],
     [
         'attribute' => 'type',
         'vAlign' => 'middle',
+        'filter' => GroupVk::getAllType(),
+        'filterType' => GridView::FILTER_SELECT2,
+        'filterWidgetOptions' => [
+            'pluginOptions' => [
+                'allowClear' => true,
+                'width' => '150px'
+            ],
+        ],
+        'filterInputOptions' => [
+            'placeholder' => '---'
+        ],
+        'value' => function (GroupVk $model) {
+            return GroupVk::getAllType()[$model->type];
+        },
     ],
     [
         'class' => 'yii\grid\ActionColumn',

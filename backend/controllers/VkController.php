@@ -4,8 +4,8 @@ namespace backend\controllers;
 
 use common\models\vk\GroupVk;
 use common\forms\vk\GroupVkForm;
-use common\services\vk\VkGroupService;
 use common\models\vk\GroupVkSearch;
+use common\services\vk\VkGroupService;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
