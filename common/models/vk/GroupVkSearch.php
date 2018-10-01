@@ -52,7 +52,8 @@ class GroupVkSearch extends GroupVk
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query
+            ->andFilterWhere([
             'id' => $this->id,
             'is_closed' => $this->is_closed,
             'type' => $this->type,

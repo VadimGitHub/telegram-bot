@@ -2,13 +2,12 @@
 
 namespace backend\controllers;
 
-use common\components\telegram\TelegramComponent;
 use common\forms\TelegramMessageForm;
-use Yii;
 use common\models\telegram\TelegramChanel;
+use common\components\telegram\TelegramComponent;
 use common\models\telegram\TelegramChanelSearch;
+use Yii;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -16,21 +15,6 @@ use yii\web\NotFoundHttpException;
  */
 class TelegramController extends Controller
 {
-    /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * @return string
      */

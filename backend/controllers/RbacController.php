@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use common\models\rbac\AuthItemSearch;
-use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\filters\AccessControl;
 
 /**
  * Class RbacController

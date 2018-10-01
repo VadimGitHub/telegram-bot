@@ -2,33 +2,17 @@
 
 namespace backend\controllers;
 
-use Yii;
 use common\models\user\User;
 use common\models\user\UserSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * UserController implements the CRUD actions for User model.
  */
 class UserController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * @return string
      */
@@ -98,7 +82,9 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ((int)$id !== 1) {
+            $this->findModel($id)->delete();
+        }
 
         return $this->redirect(['index']);
     }

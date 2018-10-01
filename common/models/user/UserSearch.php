@@ -40,8 +40,6 @@ class UserSearch extends User
     {
         $query = User::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -49,20 +47,20 @@ class UserSearch extends User
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+             $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
+        $query
+            ->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'username', $this->username])
+        $query
+            ->andFilterWhere(['ilike', 'username', $this->username])
             ->andFilterWhere(['ilike', 'auth_key', $this->auth_key])
             ->andFilterWhere(['ilike', 'password_hash', $this->password_hash])
             ->andFilterWhere(['ilike', 'password_reset_token', $this->password_reset_token])

@@ -1,4 +1,5 @@
 <?php
+
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
 
@@ -21,8 +22,7 @@ use dmstr\widgets\Alert;
             </h1>
         <?php } ?>
 
-        <?=
-        Breadcrumbs::widget(
+        <?= Breadcrumbs::widget(
             [
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]
@@ -135,6 +135,4 @@ use dmstr\widgets\Alert;
         <!-- /.tab-pane -->
     </div>
 </aside><!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-     immediately after the control sidebar -->
 <div class='control-sidebar-bg'></div>

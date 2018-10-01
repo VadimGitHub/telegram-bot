@@ -14,8 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $columns = [
     ['class' => 'kartik\grid\SerialColumn', 'order' => DynaGrid::ORDER_FIX_LEFT],
-    'title',
-    'chat_id',
+    [
+        'attribute' => 'title',
+        'vAlign' => 'middle',
+    ],
+    [
+        'attribute' => 'chat_id',
+        'vAlign' => 'middle',
+    ],
     [
         'class' => 'yii\grid\ActionColumn',
         'template' => '{message} {view} {update} {delete}',
@@ -49,9 +55,10 @@ $columns = [
 <?= DynaGrid::widget([
     'columns' => $columns,
     'storage' => DynaGrid::TYPE_COOKIE,
-    'theme' => 'panel-success',
+    'theme' => 'panel-default',
     'gridOptions' => [
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'panel' => [
             'before' => Html::a('Добавить телеграм канал', ['create'], ['class' => 'btn btn-success'])
         ],

@@ -22,12 +22,6 @@ $columns = [
             return $model->childrenForView;
         }
     ],
-//    [
-//        'class' => 'kartik\grid\ActionColumn',
-//        'template' => '{update}',
-//        'dropdown' => false,
-//        'order' => DynaGrid::ORDER_FIX_RIGHT
-//    ],
 ];
 ?>
 
@@ -36,7 +30,7 @@ $columns = [
         <?= DynaGrid::widget([
             'columns' => $columns,
             'storage' => DynaGrid::TYPE_COOKIE,
-            'theme' => 'panel-success',
+            'theme' => 'panel-default',
             'gridOptions' => [
                 'dataProvider' => $dataProvider,
                 'panel' => false,

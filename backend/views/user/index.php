@@ -17,9 +17,26 @@ $columns = [
     'status',
     'created_at',
     [
-        'class' => 'kartik\grid\ActionColumn',
-        'dropdown' => false,
-        'order' => DynaGrid::ORDER_FIX_RIGHT
+        'class' => 'yii\grid\ActionColumn',
+        'template' => '{message} {view} {update} {delete}',
+        'headerOptions' => ['width' => '200'],
+        'buttons' => [
+            'delete' => function ($url, $model) {
+                return $model->id !== 1 ? Html::a(
+                    '<span class="btn btn-danger glyphicon glyphicon-trash"></span>',
+                    $url) : '';
+            },
+            'update' => function ($url) {
+                return Html::a(
+                    '<span class="btn btn-warning glyphicon glyphicon-pencil"></span>',
+                    $url);
+            },
+            'view' => function ($url) {
+                return Html::a(
+                    '<span class="btn btn-info glyphicon glyphicon-eye-open"></span>',
+                    $url);
+            },
+        ],
     ],
 ];
 ?>
@@ -28,7 +45,7 @@ $columns = [
 <?= DynaGrid::widget([
     'columns' => $columns,
     'storage' => DynaGrid::TYPE_COOKIE,
-    'theme' => 'panel-success',
+    'theme' => 'panel-default',
     'gridOptions' => [
         'dataProvider' => $dataProvider,
         'panel' => [

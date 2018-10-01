@@ -2,8 +2,6 @@
 
 namespace common\models\user;
 
-use common\models\balance\Balance;
-
 /**
  * This is the model class for table "user".
  *
@@ -17,7 +15,6 @@ use common\models\balance\Balance;
  * @property string $created_at
  * @property string $updated_at
  *
- * @property Balance[] $balances
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -64,13 +61,5 @@ class User extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getBalances()
-    {
-        return $this->hasMany(Balance::className(), ['user_id' => 'id']);
     }
 }

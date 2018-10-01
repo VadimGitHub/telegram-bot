@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\models;
 
 use yii\base\Model;
@@ -22,14 +23,23 @@ class SignupForm extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Такой логин уже занят.'],
+            [
+                'username',
+                'unique', '
+                targetClass' => '\common\models\User', 'message' => 'Такой логин уже занят.'
+            ],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Пользователь с таким email уже зарегистрирован.'],
+            [
+                'email',
+                'unique',
+                'targetClass' => '\common\models\User',
+                'message' => 'Пользователь с таким email уже зарегистрирован.'
+            ],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 8],
@@ -39,6 +49,9 @@ class SignupForm extends Model
         ];
     }
 
+    /**
+     * @return array
+     */
     public function attributeLabels()
     {
         return [
@@ -48,11 +61,9 @@ class SignupForm extends Model
         ];
     }
 
-
     /**
-     * Signs user up.
-     *
-     * @return User|null the saved model or null if saving fails
+     * @return User|null
+     * @throws \yii\base\Exception
      */
     public function signup()
     {

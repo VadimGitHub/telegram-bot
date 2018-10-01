@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -9,8 +10,13 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
+    /** @var string $email */
     public $email;
+
+    /** @var string $password */
     public $password;
+
+    /** @var bool $rememberMe */
     public $rememberMe = true;
 
     private $_user;

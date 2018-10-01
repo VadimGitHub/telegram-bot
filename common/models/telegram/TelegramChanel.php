@@ -2,7 +2,6 @@
 
 namespace common\models\telegram;
 
-use Yii;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -28,7 +27,9 @@ class TelegramChanel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'chat_id'], 'string', 'max' => 255],
+            [['title', 'chat_id'], 'filter', 'filter' => 'trim'],
+            [['title', 'chat_id'], 'filter', 'filter' => 'strip_tags'],
+            [['title', 'chat_id'], 'string'],
         ];
     }
 
@@ -52,6 +53,7 @@ class TelegramChanel extends \yii\db\ActiveRecord
      */
     public static function getChanelByName($name)
     {
+        /** @var TelegramChanel $chanel */
         $chanel = self::findOne(['title' => $name]);
 
         if (!$chanel) {
